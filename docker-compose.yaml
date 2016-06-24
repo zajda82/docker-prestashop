@@ -1,0 +1,17 @@
+version: '2'
+services:
+    mysql:
+      image: mysql:5.7
+      volumes: 
+        - "./.data/db:/var/lib/mysql"
+      environment:
+        MYSQL_ROOT_PASSWORD: prestashop
+    php-fpm:
+      build: "../docker-prestashop-php"
+      volumes:
+       - "./.data/php:/src"
+    nginx:
+      build: "../docker-prestashop-nginx"
+      environment: 
+        PHP_HOST: php-fpm
+
