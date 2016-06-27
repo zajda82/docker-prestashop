@@ -18,6 +18,7 @@ services:
         CERTIFICATE_KEY_PATH:
       volumes:
         - "/datadrive/www/prestashop:/src"
+        - "/datadrive/ssl:/ssl"
       ports:
         - "80:80"
         - "443:443"
