@@ -3,15 +3,20 @@ services:
     mysql:
       image: mysql:5.7
       volumes: 
-        - "./.data/db:/var/lib/mysql"
+        - "/datadrive/prestadb:/var/lib/mysql"
       environment:
         MYSQL_ROOT_PASSWORD: prestashop
     php-fpm:
       build: "../docker-prestashop-php"
       volumes:
-       - "./.data/php:/src"
+        - "/datadrive/prestashop:/src"
     nginx:
       build: "../docker-prestashop-nginx"
       environment: 
         PHP_HOST: php-fpm
+      volumes:
+        - "/datadrive/prestashop:/src"
+      ports:
+        - "80:80"
+        - "443:443"
 
