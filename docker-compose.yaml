@@ -13,7 +13,9 @@ services:
     nginx:
       build: "./docker-prestashop-nginx"
       environment: 
-        PHP_HOST: php-fpm
+        PHP_HOST: "php-fpm"
+        CERTIFICATE_PATH:
+        CERTIFICATE_KEY_PATH:
       volumes:
         - "/datadrive/www/prestashop:/src"
       ports:
